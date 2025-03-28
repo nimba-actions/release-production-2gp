@@ -7,19 +7,29 @@ inputs:
   sfdx-version:
     description: 'version of SFDX to install'
     required: false
-  dev-hub-auth-url:
-    description: 'SFDX auth URL for the Dev Hub'
-    required: true
   org-name:
     description: 'Name of the scratch org config to use'
     required: true
     default: release
+  debug:
+    description: 'Display debug logs during Flow Execution'
+    required: false
+    default: false
+    type: boolean
+secrets:
+  dev-hub-auth-url:
+    description: 'SFDX auth URL for the Dev Hub'
+    required: true
+  cci-token:
+    required: false
+
 runs:
   using: "composite"
   steps:
-    - uses: nimba-actions/run-flow-scratch@v1
+    - uses: nimba-actions/run-flow-scratch@main
       with:
         dev-hub-auth-url: '${{ inputs.dev-hub-auth-url }}'
+        cci-token: '${{ inputs.cci-token }}'
         org-name: '${{ inputs.org-name }}'
         cumulusci-version: '${{ inputs.cumulusci-version }}'
         sfdx-version: '${{ inputs.sfdx-version }}'
