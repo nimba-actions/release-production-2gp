@@ -37,4 +37,4 @@ runs:
         cumulusci-version: '${{ inputs.cumulusci-version }}'
         sfdx-version: '${{ inputs.sfdx-version }}'
         flow-name: release_2gp_production
-        flow-options: ${{ inputs.beta-version && format('version_id={0}', inputs.beta-version) || '' }}
+        flow-options: ${{ inputs.beta-version && format('promote_package_version__version_id={0}', inputs.beta-version) || '' }}
