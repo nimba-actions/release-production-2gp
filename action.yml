@@ -7,6 +7,9 @@ inputs:
   sfdx-version:
     description: 'version of SFDX to install'
     required: false
+  beta-version:
+    description: 'The SubscriberPackageVersion (04t) Id for the target package'
+    required: false
   org-name:
     description: 'Name of the scratch org config to use'
     required: true
@@ -34,3 +37,4 @@ runs:
         cumulusci-version: '${{ inputs.cumulusci-version }}'
         sfdx-version: '${{ inputs.sfdx-version }}'
         flow-name: release_2gp_production
+        flow-options: ${{ inputs.beta-version && format('version_id={0}', inputs.beta-version) || '' }}
